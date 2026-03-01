@@ -2,7 +2,7 @@ package com.serenitydojo.playwright.toolshop.catalog.pageobjects;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
-import io.qameta.allure.Step;
+import net.serenitybdd.annotations.Step;
 
 public class ProductDetails {
     private final Page page;
@@ -11,7 +11,7 @@ public class ProductDetails {
         this.page = page;
     }
 
-    @Step("Increase product quantity")
+    @Step("Set product quantity to {0}")
     public void setQuantityTo(int quantity) {
         for (int i = 1; i <= quantity; i++) {
             page.getByTestId("increase-quantity").click();

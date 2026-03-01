@@ -3,7 +3,7 @@ package com.serenitydojo.playwright.toolshop.catalog.pageobjects;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
-import io.qameta.allure.Step;
+import net.serenitybdd.annotations.Step;
 
 public class PaginationComponent {
     private final Page page;

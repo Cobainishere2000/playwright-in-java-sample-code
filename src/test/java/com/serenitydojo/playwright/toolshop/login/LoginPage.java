@@ -3,6 +3,7 @@ package com.serenitydojo.playwright.toolshop.login;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 import com.serenitydojo.playwright.toolshop.domain.User;
+import net.serenitybdd.annotations.Step;
 
 public class LoginPage {
     private final Page page;
@@ -11,10 +12,12 @@ public class LoginPage {
         this.page = page;
     }
 
+    @Step("Open the login page")
     public void open() {
         page.navigate("https://practicesoftwaretesting.com/auth/login");
     }
 
+    @Step("Log in as {0}")
     public void loginAs(User user) {
         page.getByPlaceholder("Your email").fill(user.email());
         page.getByPlaceholder("Your password").fill(user.password());

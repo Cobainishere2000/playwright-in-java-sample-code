@@ -1,6 +1,7 @@
 package com.serenitydojo.playwright.toolshop.catalog.pageobjects;
 
 import com.microsoft.playwright.Page;
+import net.serenitybdd.annotations.Step;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ public class ShoppingCart {
         this.page = page;
     }
 
+    @Step("Get cart line items")
     public List<CartLineItem> getLineItems() {
         page.locator("app-cart tbody tr").first().waitFor();
         return page.locator("app-cart tbody tr")
@@ -35,10 +37,12 @@ public class ShoppingCart {
         return value.replace("$", "");
     }
 
+    @Step("Proceed to checkout")
     public void proceedToCheckout() {
         page.getByTestId("proceed-1").click();
     }
 
+    @Step("Proceed to checkout after authentication")
     public void proceedToCheckoutAfterAuthentication() {
         page.getByTestId("proceed-2").click();
     }

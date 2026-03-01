@@ -2,7 +2,7 @@ package com.serenitydojo.playwright.toolshop.catalog.pageobjects;
 
 import com.microsoft.playwright.Page;
 import com.serenitydojo.playwright.toolshop.fixtures.ProductSummary;
-import io.qameta.allure.Step;
+import net.serenitybdd.annotations.Step;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class ProductList {
                 }).toList();
     }
 
-    @Step("View product details")
+    @Step("View product details for '{0}'")
     public void viewProductDetails(String productName) {
         page.locator(".card").getByText(productName).click();
     }

@@ -2,6 +2,7 @@ package com.serenitydojo.playwright.toolshop.catalog.pageobjects;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
+import net.serenitybdd.annotations.Step;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,9 +16,12 @@ public class PaymentForm {
         this.page = page;
     }
 
+    @Step("Choose payment method '{0}'")
     public void choosePaymentMethod(String paymentMethod) {
         choosePaymentMethod(paymentMethod, new HashMap<>());
     }
+
+    @Step("Choose payment method '{0}' with details")
     public void choosePaymentMethod(String paymentMethod, Map<String,String> paymentDetails) {
         page.getByTestId("payment-method").selectOption(paymentMethod);
 
