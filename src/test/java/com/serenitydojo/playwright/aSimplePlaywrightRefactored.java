@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-
+@UsePlaywright
 public class aSimplePlaywrightRefactored {
 
     Playwright playwright;
@@ -38,6 +38,25 @@ public class aSimplePlaywrightRefactored {
         String title = page.title();
         System.out.println(title);
         Assertions.assertEquals("J&J withMe", title);
+    }
+
+
+
+    @Test
+    void findButton(Page page){
+        page.navigate("https://www.account1.jnjwithme.com");
+
+        String button_name = page.locator("button:has-text('Guide Me and Customize My Experience')").textContent();
+        System.out.println(button_name);
+        page.locator("button:has-text('Accept')").click();
+        page.locator("button:has-text('Guide Me and Customize My Experience')").click();
+        page.waitForURL("https://www.account1.jnjwithme.com/user/register?flow=guided");
+
+        String title2 = page.title();
+        System.out.println(title2);
+        Assertions.assertEquals("Register", title2);
+
+
     }
 
 
