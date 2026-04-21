@@ -19,7 +19,7 @@ public class PracticeLocators {
     Page page;
 
     @BeforeEach
-    void Setup(){
+    void Setup() {
         playwright = Playwright.create();
         browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         page = browser.newPage();
@@ -27,13 +27,13 @@ public class PracticeLocators {
     }
 
     @AfterEach
-    void teardown(){
+    void teardown() {
         browser.close();
         playwright.close();
     }
 
     @Test
-    void ByTextdemo1(){
+    void ByTextdemo1() {
 
         //Get element by text
         //It will find the text even if its a link , div or whatever
@@ -52,19 +52,21 @@ public class PracticeLocators {
     }
 
     @Test
-    void ByAltTestdemo2(){
+    void ByAltTestdemo2() {
         page.getByAltText("Combination Pliers").click();
         PlaywrightAssertions.assertThat(page.getByText("ForgeFlex Tools")).isVisible();
     }
 
     @Test
-    void Bytitledemo3(){
+    void Bytitledemo3() {
         page.getByText("Bolt Cutters").click();
         page.getByTitle("Practice Software Testing - Toolshop").click();
+
+        playwright.selectors().setTestIdAttribute("data-testid");
+
+        page.getByTestId("Data_First_Name").fill("Saptarshi");
     }
-
-
-
+}
     /*
     @Test
     void demo2(){
@@ -83,7 +85,28 @@ public class PracticeLocators {
 
     }
 
+        USING LABELS and PLACEHOLDERS
+        Locating using Labels and Placeholder texts present for input fields
+
+        Suppose there is a form with Fields like First name, Last name and Email
+        These will be input fields and there will be some labels for the fields with
+        Some Label text as well - a label is associated with a input field using some id
+
+        <label for="firstname" class="form-label">First Name</label>
+
+        Here firstname is the id for the First Name input field
+        Also the Input fields will have some placeholder text
+
+        We can find the elements using both the Label text and the placeholder text
+
+
+        page.getByLabel("First Name").fill("Saptarshi");
+        page.getByLabel("Last Name").fill("Pal");
+
+        page.getByPlaceholder("Your First Name").fill();
+        this will match with the placeholder text partially - like contains
+
+        ****Use getByLabel() for Input fields and checkboxes
+        ****Cannot getByPlaceholder() for checkboxes and dropdowns
      */
 
-
-}
