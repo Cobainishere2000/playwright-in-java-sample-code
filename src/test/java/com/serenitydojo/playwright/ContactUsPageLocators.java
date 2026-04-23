@@ -6,6 +6,7 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.microsoft.playwright.junit.UsePlaywright;
+import com.microsoft.playwright.options.AriaRole;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,19 +36,20 @@ public class ContactUsPageLocators {
     }
 
     @Test
-    void EnterData(){
+    void EnterDataAndCheckForFieldErrorMessage(){
 
 
-        page.locator("#first_name").fill("Ayan");
-        page.getByPlaceholder("Your First Name").fill("Saptarshi");
-        PlaywrightAssertions.assertThat(page.locator("#first_name")).hasValue("Saptarshi");
-        page.getByLabel("Last Name").fill("Pal");
+        page.locator("#first_name").fill("");
+        //page.getByPlaceholder("Your First Name").click();
+        //PlaywrightAssertions.assertThat(page.locator("#first_name")).hasValue("Saptarshi");
+        //page.getByLabel("Last Name").fill("Pal");
 
-        page.getByLabel("Email address").fill("sapchester@mailinator.com");
+        page.locator("#message").fill("sapchester@mailinator.com");
 
         page.locator(".btnSubmit").click();
-
+        page.waitForTimeout(2000);
         List<String> errorMessages = page.locator(".alert").allTextContents();
+        System.out.println(errorMessages.size());
         System.out.println(errorMessages);
 
 
