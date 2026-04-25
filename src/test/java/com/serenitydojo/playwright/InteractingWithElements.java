@@ -87,6 +87,21 @@ public class InteractingWithElements {
         //Assert Error message for each mandatory field is displayed
         var error_msg = page.getByRole(AriaRole.ALERT).getByText(fieldname+" is required");
         PlaywrightAssertions.assertThat(error_msg).isVisible();
+        //See this is happening due to AssertJ it has assertion methods for Strings
+        PlaywrightAssertions.assertThat(error_msg).containsText("required");
+
+
+        /*
+        Playwright assertions i.e PlaywrightAssertions.assertThat() and similar methods
+        work on Playwright objects and elements, but we can extend them to apply
+        on other things like our Strings, arrays lists etc
+
+        For this we will need a library "Assert-J"
+        We will add this in our pom.xml
+
+         */
+
+
 
     }
 
