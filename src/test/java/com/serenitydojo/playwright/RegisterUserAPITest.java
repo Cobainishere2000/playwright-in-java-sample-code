@@ -64,13 +64,12 @@ public class RegisterUserAPITest {
                         .setHeader("Content-Type", "application/json")
                         .setData(user_noname)
         );
-        System.out.println(Arrays.toString(response.body()));
         System.out.println(user_noname);
         //assertThat(response.status()).isEqualTo(201);
 
         String response_body = response.text();
         Gson gson = new Gson();
         System.out.println(response_body);
-        assertThat(response.status()).isEqualTo(201);
+        assertThat(response.status()).isEqualTo(422);
     }
 }
